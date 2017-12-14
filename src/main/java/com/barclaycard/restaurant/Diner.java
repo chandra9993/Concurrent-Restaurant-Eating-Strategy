@@ -45,12 +45,13 @@ public class Diner implements Runnable {
               // Eat some.
               eat();
               // Finished.
-              //Pausing to digest
-              digest();
+             
               rightFork.putDown(this, RIGHT);
             }
             // Finished.
             leftFork.putDown(this,LEFT);
+            //Pausing to digest
+            digest();
           }
         }
       } catch (Exception e) {
@@ -62,7 +63,9 @@ public class Diner implements Runnable {
      * @throws InterruptedException
      */
     private void digest() throws InterruptedException {
+     if(eatTime!=0){	
       LOGGER.info(this+" ate for "+eatTime+"ms. Pausing to digest..");
+     }
       Thread.sleep(randomGenerator.nextInt(TIME_UNIT));
     }
     /***
